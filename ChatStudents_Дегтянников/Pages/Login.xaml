@@ -11,8 +11,14 @@
 
     <Grid Background="#ff0071ff">
         <Grid HorizontalAlignment="Right" Width="200" Background="#B2FFFFFF">
-            <Image x:Name="imgUser" Source="/Images/Avia.png" Width="100" Height="100"
-VerticalAlignment="Top" Margin="0,50, 0, 0" StretchDirection="Both" Stretch="UniformToFill">
+            <Image x:Name="imgUser"
+       Source="/./Images/Avia.png" 
+       Width="100" 
+       Height="100"
+       VerticalAlignment="Top"
+       Margin="0,50,0,0" 
+       StretchDirection="Both" 
+       Stretch="UniformToFill">
                 <Image.Clip>
                     <RectangleGeometry RadiusX="50" RadiusY="50" Rect="0,0,100,100"/>
                 </Image.Clip>

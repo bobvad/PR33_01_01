@@ -22,12 +22,12 @@ namespace ChatStudents_Дегтянников.Pages.Items
     /// </summary>
     public partial class User : UserControl
     {
-        User user;
+        Users users;
         Main main;
         public User(Users user,Main main)
         {
             InitializeComponent();
-            this.user = user;
+            this.users = user;
             this.main = main;
             imgUser.Source = BitmapFromArrayByte.LoadImage(user.Photo);
             FIO.Content = user.ToFIO();
@@ -35,7 +35,7 @@ namespace ChatStudents_Дегтянников.Pages.Items
 
         private void SelectChat(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            main.SelectUser(user);
+            main.SelectUser(users);
         }
     }
 }

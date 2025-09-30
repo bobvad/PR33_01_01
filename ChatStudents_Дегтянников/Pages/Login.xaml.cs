@@ -15,7 +15,7 @@ namespace ChatStudents_Дегтянников.Pages
     public partial class Login : Page
     {
         public string srcUserImage = "";
-        Classes.UserMessageContext users = new Classes.UserMessageContext();
+        Classes.UsersContext users = new Classes.UsersContext();
         public Login()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace ChatStudents_Дегтянников.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Выберите фотографию:";
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All files (*.*)]*.*"; // Если файл выбран
+            openFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 imgUser.Source = new BitmapImage(new Uri(openFileDialog.FileName));
@@ -41,17 +41,17 @@ namespace ChatStudents_Дегтянников.Pages
 
         private void Continue(object sender, RoutedEventArgs e)
         {
-            if (!CheckEmpty("[A-ЯЁ][a-яё]*5", Lastname.Text))
+            if (!CheckEmpty("[A-ЯёЁ][a-яА-ЯёЁ]*$", Lastname.Text))
             {
                 MessageBox.Show("Укажите фамилию.");
                 return;
             }
-            if (!CheckEmpty("[A-ЯЁ][a-яё]*5", Firstname.Text))
+            if (!CheckEmpty("[A-ЯёЁ][a-яА-ЯёЁ]*$", Firstname.Text))
             {
                 MessageBox.Show("Укажите имя.");
                 return;
             }
-            if (!CheckEmpty("[A-ЯЁ][a-яё]*5", Surname.Text))
+            if (!CheckEmpty("[A-ЯёЁ][a-яА-ЯёЁ]*$", Surname.Text))
             {
                 MessageBox.Show("Укажите отчество.");
                 return;
@@ -61,22 +61,22 @@ namespace ChatStudents_Дегтянников.Pages
                 MessageBox.Show("Выберите изображение.");
                 return;
             }
-            if (UserMessageContext.Users.Where(x => x.Firstname == Firstname.Text &&
-                x.Lastname == Lastname.Text &&
+            if (users.Users.Where(x => x.FirstName == Firstname.Text &&
+                x.LastName == Lastname.Text &&
                 x.Surname == Surname.Text).Count() > 0)
             {
-                MainWindow.Instance.LoginUser = userContext.Users.Where(x => x.Firstname == Firstname.Text &&
-                    x.Lastname == Lastname.Text &&
+                MainWindow.Instance.LoginUser = users.Users.Where(x => x.FirstName == Firstname.Text &&
+                    x.LastName == Lastname.Text &&
                     x.Surname == Surname.Text).First();
                 MainWindow.Instance.LoginUser.Photo = File.ReadAllBytes(srcUserImage);
-                UserMessageContext.SaveChanges();
+                users.SaveChanges();
             }
             else
             {
-                UserMessageContext.Users.Add(new Users(Lastname.Text, Firstname.Text, Surname.Text, File.ReadAllBytes(srcUserImage)));
-                UserMessageContext.SaveChanges();
-                MainWindow.Instance.LoginUser = UserMessageContext.Users.Where(x => x.Firstname == Firstname.Text &&
-                    x.Lastname == Lastname.Text &&
+                users.Users.Add(new Users(Lastname.Text, Firstname.Text, Surname.Text, File.ReadAllBytes(srcUserImage)));
+                users.SaveChanges();
+                MainWindow.Instance.LoginUser = users.Users.Where(x => x.FirstName == Firstname.Text &&
+                    x.LastName == Lastname.Text &&
                     x.Surname == Surname.Text).First();
             }
             MainWindow.Instance.OpenPages(new Pages.Main());

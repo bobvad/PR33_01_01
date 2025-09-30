@@ -1,6 +1,4 @@
-﻿using ChatStudents_Дегтянников.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace ChatStudents_Дегтянников.Classes
 {
-    public class UserMessageContext: DbContext
+    public class UsersContext: DbContext
     {
-        public DbSet<Messages> Messages { get; set; }
-        public DbSet<Users> Users { get; set; } 
-        public UserMessageContext() =>
+        public DbSet<Models.Users> Users { get; set; }
+        public UsersContext() =>
             Database.EnsureCreated();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(Config.config);
             optionsBuilder.UseMySql(Common.Config.ConnectionConfig, Common.Config.Version);
         }
     }

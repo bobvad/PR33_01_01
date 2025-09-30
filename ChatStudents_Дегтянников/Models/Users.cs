@@ -8,18 +8,22 @@ namespace ChatStudents_Дегтянников.Models
 {
     public class Users
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public byte[] Photo { get; set; }
-        public Users(string LastName,string FirstName,string Surname, byte[] Photo)
+
+        public Users() { }
+
+        public Users(string lastName, string firstName, string surname, byte[] photo)
         {
-            this.LastName = LastName;
-            this.FirstName = FirstName;
-            this.Surname = Surname;
-            this.Photo = Photo;
+            LastName = lastName;
+            FirstName = firstName;
+            Surname = surname;
+            Photo = photo;
         }
+
         public string ToFIO()
         {
             return $"{LastName} {FirstName} {Surname}";

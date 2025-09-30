@@ -18,5 +18,10 @@ namespace ChatStudents_Дегтянников.Models
             this.UserTo = UserTo;
             this.Message = Message;
         }
+        public Messages(int UserFrom, int UserTo)
+        {
+            this.UserFrom = UserFrom;
+            this.UserTo = UserTo;
+        }
     }
 }

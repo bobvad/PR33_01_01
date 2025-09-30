@@ -34,13 +34,14 @@
                            Source="/Images/Avia.png" Visibility="Hidden"/>
                     <Label x:Name="FIO" Content="Иванов Иван Иванович" Margin="45, 0, 0,0"
                         VerticalAlignment="Top" FontWeight="Bold" FontSize="10"/>
-                    <ScrollViewer Margin="0,50,0,50">
-                        <StackPanel x:Name="ParentMessages">
-                        </StackPanel>
-                    </ScrollViewer>
+
                 </Grid>
+                <ScrollViewer Margin="0,50,0,50">
+                    <StackPanel x:Name="ParentMessages">
+                    </StackPanel>
+                </ScrollViewer>
+                <TextBox x:Name="Message" Height="35" VerticalContentAlignment="Center" Margin="10,0,10,10" TextWrapping="Wrap" VerticalAlignment="Bottom" KeyUp="Send" Grid.Column="1"/>
             </Grid>
-            <TextBox x:Name="Message" Height="35" VerticalContentAlignment="Center" Margin="10,0,10,10" TextWrapping="Wrap" VerticalAlignment="Bottom" KeyUp="Send" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Page>
